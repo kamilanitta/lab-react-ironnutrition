@@ -1,4 +1,6 @@
 import React from 'react';
+import 'bulma/css/bulma.css';
+
 import foods from '../foods.json';
 
 class FoodBox extends React.Component {
@@ -8,35 +10,39 @@ class FoodBox extends React.Component {
 
   render() {
     return (
-      <div className=" w-50 p-3">
+      <div className="column">
         {this.state.foods.map((foods) => {
           return (
-            <div className=" border btn-light d-flex flex-row mb-3 align-items-center">
-              <div className=" w-20 p-3">
-                <img
-                  src={foods.image}
-                  alt={foods.name}
-                  style={{ width: '60px' }}
-                />
-              </div>
-              <div className="w-25 p-3">
-                <div className="">
-                  <p>
-                    <strong>{foods.name}</strong> <br />
-                    <small>{foods.calories} cal</small>
-                  </p>
+            <div className="box column">
+              <article className="media">
+                <div className="media-left">
+                  <figure className="image is-64x64">
+                    <img src={foods.image} alt={foods.name} />
+                  </figure>
                 </div>
-              </div>
-              <div className="">
-                <div className="d-flex justify-content-end flex-row ">
-                  <div className="align-self-center ">
-                    <input className="input" type="number" value="1" />
-                  </div>
-                  <div className="p-2 align-self-center">
-                    <button className="btn btn-primary">+</button>
+                <div className="media-content">
+                  <div className="content">
+                    <p>
+                      <strong>{foods.name}</strong> <br />
+                      <small>{foods.calories} cal</small>
+                    </p>
                   </div>
                 </div>
-              </div>
+                <div className="media-right">
+                  <div className="field has-addons">
+                    <div className="control">
+                      <input
+                        className="input"
+                        type="number"
+                        value={foods.quantity}
+                      />
+                    </div>
+                    <div className="control">
+                      <button className="button is-info">+</button>
+                    </div>
+                  </div>
+                </div>
+              </article>
             </div>
           );
         })}
@@ -44,5 +50,4 @@ class FoodBox extends React.Component {
     );
   }
 }
-
 export default FoodBox;
